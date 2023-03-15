@@ -3,10 +3,78 @@
   <head>
     <meta charset="UFT-8">
     <title>Rock, Paper, Scissors Game</title>
-    
+    <link rel="stylesheet" href="style.css">
   </head>
+
   <body>
-    <script src="script.js"> 
-    </script>
+    <div id="initial-page">
+      <div class="header">
+        <h1>Rock, Paper, Scissors</h1>
+      </div>
+      <div id="initial-card">
+        <div class="player-choice">
+          <p>Chose your hand:</p>
+          <div class="choices">
+            <div class="rock-choice">
+              <img src="images/rock.jpeg" alt="Rock" class="rock-image">
+              <button class="button" data-choice="rock">Rock</button>
+            </div>
+
+            <div class="paper-choice">
+              <img src="images/paper.jpeg" alt="Paper" class="paper-image">
+              <button class="button" data-choice="paper">Paper</button>
+            </div>
+           
+            <div class="scissors-choice">
+              <img src="images/scissors.jpeg" alt="Scissors" class="scissors-image">
+              <button class="button" data-choice="scissors">Scissors</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="game-card" class="hidden">
+      <div class="game">
+        <div class="computer-input">
+          <div id="computerCounter" class="counter computer">Computer Score: 0</div>
+          <div id="computer-rock-choice" class="choice">
+            <img src="images/rock.jpeg" alt="Rock" class="rock-image">
+          </div>
+          
+          <div id="computer-paper-choice" class="choice">
+            <img src="images/paper.jpeg" alt="Paper" class="paper-image">
+          </div>
+          
+          <div id="computer-scissors-choice" class="choice">
+            <img src="images/scissors.jpeg" alt="Scissors" class="scissors-image">
+          </div>
+           
+        </div>
+
+        <div class="player-input">
+          <div id="playerCounter" class="counter player">Player Score: 0</div>
+          <div id="player-rock-choice" class="choice">
+            <img src="images/rock.jpeg" alt="Rock" class="rock-image">
+          </div>
+
+          <div id="player-paper-choice" class="choice">
+            <img src="images/paper.jpeg" alt="Paper" class="paper-image">
+          </div>
+          
+          <div id="player-scissors-choice" class="choice">
+            <img src="images/scissors.jpeg" alt="Scissors" class="scissors-image">
+          </div>
+        </div>
+     </div>
+    </div>
+
+    <div id="results-card" class="hidden">
+      <div class="results placard">
+        <p id="resultsText">Player Won This Round!</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>    

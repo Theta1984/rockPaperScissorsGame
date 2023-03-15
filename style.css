@@ -1,0 +1,119 @@
+h1 {
+  font-weight: bolder;
+  font-size: 70px;
+}
+
+p {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.hidden {
+  transition: opacity 200ms, display 200ms; 
+  display: none !important;
+  opacity: 0;
+}
+
+#initial-page {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+
+.player-choice {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.rock-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.paper-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scissors-choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scissors-image {
+  width: auto;
+  height: 300px;
+}
+
+.rock-image {
+  width: 300px;
+  height: auto;
+}
+
+.paper-image {
+  width: 300px;
+  height: auto;
+}
+
+#game-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  display: flex;
+  justify-content: space-around;
+  gap: 500px;
+}
+
+.computer-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#results-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

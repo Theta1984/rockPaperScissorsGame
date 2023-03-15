@@ -1,71 +1,142 @@
 //global 
-const answers = ["rock", "paper", "scissors"]; 
+const choices = ["rock", "paper", "scissors"]; 
+const answers = document.querySelectorAll('button'); 
+let playerChoice; 
+let computerChoice = getComputerChoice();
 
-//generate a random choice 
+const initialCard = document.getElementById('initial-card'); 
+const gameCard = document.getElementById('game-card'); 
+const resultsCard = document.getElementById('results-card'); 
 
-function getComputerChoice() {
-  return computerChoice = answers[Math.floor(answers.length * Math.random())];
-} 
+const resultsText = document.getElementById('resultsText'); 
 
-function getPlayerChoice() {
-  let playerChoice = window.prompt("Rock, Paper, or Scissors?");
-  return playerChoice;
+const compRockImg = document.getElementById('computer-rock-choice'); 
+const compPaperImg = document.getElementById('computer-paper-choice'); 
+const compScissorsImg = document.getElementById('computer-scissors-choice'); 
+
+const playerRockImg = document.getElementById('player-rock-choice');
+const playerPaperImg = document.getElementById('player-paper-choice');
+const playerScissorsImg = document.getElementById('player-scissors-choice'); 
+
+const playerCounter = document.getElementById('playerCounter'); 
+const computerCounter = document.getElementById('computerCounter'); 
+
+let playerScore = 0;
+let computerScore = 0;
+
+
+answers.forEach(answer => answer.addEventListener('click', handlePlayerMove)); 
+
+
+function handlePlayerMove(e) {
+  playerChoice = e?.target.getAttribute('data-choice');
+  initialCard.classList.add('hidden'); 
+  gameCard.classList.remove('hidden'); 
+
+  computerChoice = getComputerChoice(); 
+  console.log(computerChoice);
+  showComputerChoice();
+  showPlayerChoice();
+  const result = getWhoWonRound();
+  updateScores(result); 
+
+  setTimeout(() => {
+    showResult(result);
+
+    setTimeout(() => {
+      resultsCard.classList.add('hidden');
+      initialCard.classList.remove('hidden');
+    }, 2000);
+  }, 3000);
 }
 
+function getComputerChoice() {
+  return choices[Math.floor(choices.length * Math.random())];
+} 
 
-function singleRound() {
-  let computerAnswer = getComputerChoice();  
-  let playerAnswer = getPlayerChoice(); 
-  let result; 
-  console.log(playerAnswer); 
-  console.log(computerAnswer);  
+function showComputerChoice() {
+  if (computerChoice === 'rock') {
+    compPaperImg.classList.add('hidden');
+    compScissorsImg.classList.add('hidden');
+    compRockImg.classList.remove('hidden'); 
+  } else if (computerChoice === 'paper') {
+    compRockImg.classList.add('hidden');
+    compScissorsImg.classList.add('hidden');
+    compPaperImg.classList.remove('hidden');
+  } else if (computerChoice === 'scissors') {
+    compRockImg.classList.add('hidden');
+    compPaperImg.classList.add('hidden');
+    compScissorsImg.classList.remove('hidden'); 
+  }
+}
 
-  if (computerAnswer === playerAnswer) {
+function showPlayerChoice() {
+  if (playerChoice === 'rock') {
+    playerPaperImg.classList.add('hidden');
+    playerScissorsImg.classList.add('hidden');
+    playerRockImg.classList.remove('hidden');
+  } else if (playerChoice === 'paper') {
+    playerRockImg.classList.add('hidden');
+    playerScissorsImg.classList.add('hidden');
+    playerPaperImg.classList.remove('hidden'); 
+  } else if (playerChoice === 'scissors') {
+    playerRockImg.classList.add('hidden');
+    playerPaperImg.classList.add('hidden');
+    playerScissorsImg.classList.remove('hidden'); 
+  }
+}
+
+//play a single round of the game
+function getWhoWonRound() {
+  let result;  
+
+  if (computerChoice === playerChoice) {
     result = null; 
-  } else if (computerAnswer === "rock" && playerAnswer === "scissors") {
+  } else if (computerChoice === "rock" && playerChoice === "scissors") {
     result = "Computer wins"; 
-  } else if (playerAnswer === "rock" && computerAnswer === "scissors") {
+  } else if (playerChoice === "rock" && computerChoice === "scissors") {
     result = "Player wins"; 
-  } else if (computerAnswer === "scissors" && playerAnswer === "paper") {
+  } else if (computerChoice === "scissors" && playerChoice === "paper") {
     result = "Computer wins"; 
-  } else if (playerAnswer === "scissors" && computerAnswer === "paper") {
+  } else if (playerChoice === "scissors" && computerChoice === "paper") {
     result = "Player wins"; 
-  } else if (computerAnswer === "paper" && playerAnswer === "rock") {
+  } else if (computerChoice === "paper" && playerChoice === "rock") {
     result = "Computer wins"; 
-  } else if (playerAnswer === "paper" && computerAnswer === "rock") {
+  } else if (playerChoice === "paper" && computerChoice === "rock") {
     result = "Player wins"; 
   } 
   return result; 
 }
 
+function showResult(result) {
+  const winningScore = 5;
 
-function playFullGame() {
-  count = 5; 
-  computerCount = 0; 
-  playerCount = 0; 
+  gameCard.classList.add('hidden'); 
+  resultsCard.classList.remove('hidden'); 
 
-  for (let i = 0; i <= count; i++) {
-    let result = singleRound(); 
-    if (result === "Computer wins") {
-      computerCount += 1; 
-    } else if (result === "Player wins") {
-      playerCount += 1; 
-    } else {
-      singleRound(); 
-    }
+  if (playerScore === winningScore) {
+    resultsText.innerHTML = 'Player has won the game!!';
+    return;
+  } else if (computerScore === winningScore) {
+    resultsText.innerHTML = 'Computer has won the game!';
+    return;
   }
-  return {"computerCount": computerCount, "playerCount": playerCount}; 
-}
 
-function whoWon() {
- const results = playFullGame();
- const computerCount = results.computerCount;
- const playerCount = results.playerCount;
-  
-  if (computerCount > playerCount) {
-    return "Computer won!"; 
+  if (result === null) {
+    resultsText.innerHTML = 'This round was a tie. Play again.';
+  } else if (result === 'Player wins') {
+    resultsText.innerHTML = 'The Player has won this round!';
   } else {
-    return "Player won!"
+    resultsText.innerHTML = 'The Computer has won this round!'; 
+  }
+} 
+
+function updateScores(result) {
+  if (result === 'Player wins') {
+    playerScore++;
+    playerCounter.innerHTML = 'Player Score :' + playerScore;
+  } else if (result === 'Computer wins') {
+    computerScore++;
+    computerCounter.innerHTML = 'Computer Score :' + computerScore;
   }
 }
-console.log(whoWon()); 
